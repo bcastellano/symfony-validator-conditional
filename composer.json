@@ -1,0 +1,29 @@
+{
+    "name": "bcastellano/symfony-validator-conditional",
+    "type": "library",
+    "description": "Symfony validator for conditional validations based on object properties",
+    "version": "1.0.0",
+    "keywords": ["symfony", "php", "validator", "condition", "symfony2", "symfony3"],
+    "license": "MIT",
+    "authors": [{ "name": "Blas Castellano Moreno", "email": "b.castellano.moreno@gmail.com", "homepage": "http://bcastellano.es" }],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "~2.0",
+        "symfony/validator": "~2.0"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bcastellano\\Symfony\\Validator\\Constraints\\": "src/"
+        }
+    },
+    "scripts": {
+        "run-test": [
+            "php bin/phpspec run --ansi"
+        ]
+    }
+}
