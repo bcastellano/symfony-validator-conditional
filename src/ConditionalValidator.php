@@ -16,11 +16,18 @@ class ConditionalValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
-        $condition = call_user_func($constraint->condition, $this->context->getObject());
+        $context = $this->context;
+        if ($context instanceof ExecutionContextInterface) {
+            $object = $this->context->getObject();
+        } else {
+            $object = $this->context->getRoot();
+        }
 
+        // execute callable condition with context object as parameter
+        $condition = call_user_func($constraint->condition, $object);
+
+        // if condition result match validate list of constraints
         if ($constraint->mustMatch === $condition) {
-            $context = $this->context;
-
             if ($context instanceof ExecutionContextInterface) {
                 $validator = $context->getValidator()->inContext($context);
 

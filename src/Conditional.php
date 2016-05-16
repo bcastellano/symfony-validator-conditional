@@ -5,17 +5,20 @@ namespace Bcastellano\Symfony\Validator\Constraints;
 use Symfony\Component\Validator\Constraints\Composite;
 
 /**
- *
+ * @Annotation
+ * @Target({"CLASS", "PROPERTY", "METHOD", "ANNOTATION"})
  */
 class Conditional extends Composite
 {
     /**
+     * Constraint list to apply
      * @var array
      */
     public $constraints = array();
 
     /**
-     * @var \Closure
+     * Function or callable to indicates if constraints must be validated or not
+     * @var callable
      */
     public $condition;
 
@@ -25,16 +28,25 @@ class Conditional extends Composite
      */
     public $mustMatch = true;
 
+    /**
+     * {@inheritdoc}
+     */
     public function getDefaultOption()
     {
         return 'constraints';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getRequiredOptions()
     {
         return array('constraints', 'condition');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function getCompositeOption()
     {
         return 'constraints';

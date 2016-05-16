@@ -10,5 +10,6 @@ class ConditionalSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType('Bcastellano\Symfony\Validator\Constraints\Conditional');
+        $this->shouldHaveType('Symfony\Component\Validator\Constraints\Composite');
     }
 }
