@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.org/bcastellano/symfony-validator-conditional.svg?branch=master)](https://travis-ci.org/bcastellano/symfony-validator-conditional)
+[![Coverage Status](https://coveralls.io/repos/github/bcastellano/symfony-validator-conditional/badge.svg?branch=master)](https://coveralls.io/github/bcastellano/symfony-validator-conditional?branch=master)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/f544eb6c-9c1c-4728-8758-e6d3d004af9e/mini.png)](https://insight.sensiolabs.com/projects/f544eb6c-9c1c-4728-8758-e6d3d004af9e)
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
+
 # Symfony Conditional validator
 Symfony validator for conditional validations based on object properties
 
@@ -21,7 +26,7 @@ namespace AppBundle\Entity;
 
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints as Assert;
-use Bcastellano\Symfony\Component\Validator\Constraints\Conditional;
+use Bcastellano\Symfony\Validator\Constraints\Conditional;
 
 class User
 {
