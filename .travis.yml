@@ -22,7 +22,7 @@ before_script:
   - composer install --prefer-dist
 
 script:
-  - vendor/bin/phpspec --config=phpspec.yml
+  - php bin/phpspec run --config=.phpspec.yml
 
 after_success:
-  - travis_retry php vendor/bin/coveralls -v
+  - travis_retry php bin/coveralls -v
