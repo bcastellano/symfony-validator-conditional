@@ -17,16 +17,17 @@ $ composer require bcastellano/symfony-validator-conditional
 or adding to require section in `composer.json`
 
 ## Usage
+You can use PHP, Annotations, YAML or XML.
 
-Configuration example for PHP. You also can use Annotations, YAML or XML.
+### Configuration example with PHP
 
 ```php
 // src/AppBundle/Entity/User.php
 namespace AppBundle\Entity;
 
-use Symfony\Component\Validator\Mapping\ClassMetadata;
-use Symfony\Component\Validator\Constraints as Assert;
 use Bcastellano\Symfony\Validator\Constraints\Conditional;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 class User
 {
@@ -57,6 +58,55 @@ class User
                 return $boolean; 
             }
         )));
+    }
+}
+```
+
+### Configuration example with annotations
+```php
+// src/AppBundle/Entity/User.php
+namespace AppBundle\Entity;
+
+use Bcasellano\Symfony\Validator\Constraints\Conditional;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+
+/**
+ * Class validator
+ *
+ * @Conditional(
+ *     constraints = {
+ *         @Assert\Callback({"AppBundle\Entity\User","validate"})
+ *     },
+ *     condition = "AppBundle\Entity\User::shouldValidateName"
+ * )
+ */
+class User
+{
+    /**
+     * Property validator
+     *
+     * @Conditional(
+     *     constraints = {
+     *         @Assert\NotBlank()
+     *     },
+     *     condition = "AppBundle\Entity\User::shouldValidateName"
+     * )
+     */
+    protected $name;
+
+    public static function shouldValidateName($object)
+    {
+        // add login here... $value is object validating and can be use to check context
+                 
+        return $boolean;
+    }
+    
+    
+    public static function validate($object, ExecutionContextInterface $context, $payload)
+    {
+        // ...
     }
 }
 ```
